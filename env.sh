@@ -41,3 +41,9 @@ sudo systemctl status gunicorn_personal_assistant_web.service
 #sudo supervisorctl update
 sudo service nginx restart
 
+echo ::
+echo pleas note nginx is configed to server traffic for 'askbob.test' for this website
+echo consider add '127.0.0.1 askbob-test' into your /etc/hosts, 
+echo and edit /etc/nsswitch.conf to 'hosts: files mdns4_minimal [NOTFOUND=return] dns' 
+echo so you can use the domain name to test
+
