@@ -20,6 +20,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'ConversationLogViewSet', views.ConversationLogViewSet)
+router.register(r'FromUser', views.FromUserViewSet, "from-user")
 
 urlpatterns = [
     path('admin/', (admin.site.urls)),

@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from personal_assistant_app.models import ConversationLog
 from personal_assistant_app.serializers import ConversationLogSerializer
+from personal_assistant_app.serializers import FromUserSerializer
+from personal_assistant_app.serializers import FromAssistantSerializer
 from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.decorators import action
 from datetime import date
 import random
 import math
@@ -31,3 +34,16 @@ class ConversationLogViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationLogSerializer
     permission_classes = [permissions.AllowAny]
 
+class FromUserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    assistant_server_url = "http://localhost:5005/webhooks/rest/webhook"
+    permission_classes = [permissions.AllowAny]
+    
+    def get_queryset(self):
+        
+        return [{'recipient_id':'test','text':'Hey! How are you?'}]
+
+    def get_serializer_class(self):
+        return FromAssistantSerializer
