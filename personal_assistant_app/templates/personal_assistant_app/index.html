@@ -1,0 +1,32 @@
+{% extends "personal_assistant_app/base.html" %}
+{% block content %}
+
+</script>
+
+<div id=app>
+
+    <p>[[ title ]]</p>
+
+    </div>
+
+<script>
+
+
+    new Vue({
+
+        delimiters: ['[[', ']]'],
+
+        el: '#app',
+
+        data: {
+
+            title: 'Welcome to Personl Assistant',
+        }
+
+    })
+
+
+
+</script>
+
+{% endblock %}
