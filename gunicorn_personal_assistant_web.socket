@@ -1,0 +1,6 @@
+[Unit]
+Description=personal assistant web socket
+[Socket]
+ListenStream= /home/wwwadmin/personal_assistant_web/personal_assistant_web.sock 
+[Install]
+WantedBy=sockets.target

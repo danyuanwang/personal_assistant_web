@@ -1,0 +1,14 @@
+[Unit]
+Description=personal assistant web  gunicorn daemon
+Requires=gunicorn_personal_assistant_web.socket
+After=network.target
+
+[Service]
+User=wwwadmin
+Group=wwwadmin
+WorkingDirectory=/home/wwwadmin/personal_assistant_web
+ExecStart=/home/wwwadmin/personal_assistant_web/venv_t/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/wwwadmin/personal_assistant_web/personal_assistant_web.sock personal_assistant_web.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+

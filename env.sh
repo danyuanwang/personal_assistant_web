@@ -17,15 +17,27 @@ echo ALTER ROLE $DBUSER SET timezone TO 'UTC'\;
 
 python manage.py collectstatic
 
-#sudo rm /etc/nginx/sites-enabled/django_nginx.conf
-#sudo ln -s $PWD/django_nginx.conf /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/django_nginx_personal_assistant_web.conf
+sudo rm /etc/nginx/sites-available/django_nginx_personal_assistant_web.conf
+sudo ln -s $PWD/django_nginx.conf /etc/nginx/sites-available/django_nginx_personal_assistant_web.conf
+sudo ln -s $PWD/django_nginx.conf /etc/nginx/sites-enabled/django_nginx_personal_assistant_web.conf
 #sudo rm /etc/uwsgi/apps-enabled/django_uwsgi.ini
 #sudo ln -s $PWD/django_uwsgi.ini /etc/uwsgi/apps-enabled/
-#sudo rm /etc/systemd/system/gunicorn.service
-#sudo ln -s $PWD/gunicorn.service /etc/systemd/system/
+sudo rm /etc/systemd/system/gunicorn_personal_assistant_web.socket
+sudo ln -s $PWD/gunicorn_personal_assistant_web.socket /etc/systemd/system/
+sudo rm /etc/systemd/system/gunicorn_personal_assistant_web.service
+sudo ln -s $PWD/gunicorn_personal_assistant_web.service /etc/systemd/system/
 #sudo service uwsgi restart
-#sudo service nginx restart
-#sudo systemctl daemon-reload
-#sudo systemctl restart gunicorn
-#sudo systemctl enable gunicorn
-#sudo systemctl status gunicorn
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn_personal_assistant_web.socket
+sudo systemctl enable gunicorn_personal_assistant_web.socket
+sudo systemctl status gunicorn_personal_assistant_web.socket
+sudo systemctl restart gunicorn_personal_assistant_web.service
+sudo systemctl enable gunicorn_personal_assistant_web.service
+sudo systemctl status gunicorn_personal_assistant_web.service
+#sudo rm /etc/supervisor/conf.d/personal_assistant_web.conf
+#sudo ln -s $PWD/supervisor.conf /etc/supervisor/conf.d/personal_assistant_web.conf
+#sudo supervisorctl reread
+#sudo supervisorctl update
+sudo service nginx restart
+
