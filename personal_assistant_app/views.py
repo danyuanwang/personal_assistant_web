@@ -3,6 +3,7 @@ from personal_assistant_app.models import ConversationLog
 from personal_assistant_app.serializers import ConversationLogSerializer
 from personal_assistant_app.serializers import FromUserSerializer
 from personal_assistant_app.serializers import FromAssistantSerializer
+from personal_assistant_app.webhook import post_message
 from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -38,12 +39,11 @@ class FromUserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    assistant_server_url = "http://localhost:5005/webhooks/rest/webhook"
     permission_classes = [permissions.AllowAny]
     
     def get_queryset(self):
-        
-        return [{'recipient_id':'test','text':'Hey! How are you?'}]
+        r = post_message("test","hello")
+        return r
 
     def get_serializer_class(self):
         return FromAssistantSerializer
