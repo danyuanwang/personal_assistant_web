@@ -6,9 +6,9 @@
 <div id=app>
 
     <p>[[ title ]]</p>
-    <p>From User: [[message]]</p>
+    <p>From User: [[from_user_message]]</p>
     <p>From Assistant: [[from_assistant_text]]</p>
-    <input v-model="message" placeholder="ask me" v-on:keyup.enter="from_user">
+    <input v-model="user_typein" placeholder="ask me" v-on:keyup.enter="from_user">
 </div>
 
 <script>
@@ -22,7 +22,8 @@
 
         data: {
             from_assistant_text: 'Hello, I am Bob',
-            message: 'hello',
+            from_user_message: 'hello',
+            user_typein: "hello" ,
             title: 'Welcome to Personl Assistant',
             sender: "ask-bob"
         },
@@ -31,7 +32,9 @@
         },
         methods: {
             from_user: function () {
-                data = {sender:this.sender, message:this.message}
+                this.from_user_message = this.user_typein
+                this.user_typein = ""
+                data = {sender:this.sender, message:this.from_user_message}
                 this.$http.post(
                     `/api/from-user/`,
                     data,
