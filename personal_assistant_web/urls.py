@@ -20,11 +20,11 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'ConversationLogViewSet', views.ConversationLogViewSet)
-router.register(r'FromUser', views.FromUserViewSet, "from-user")
 
 urlpatterns = [
     path('admin/', (admin.site.urls)),
     path('api/', include(router.urls)),
     path('', include("personal_assistant_app.urls")),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/from-user/', views.from_user, name="from_user")
  ]

@@ -16,8 +16,7 @@ class FromAssistant(models.Model):
     
     class Meta:
         managed = False
-        db_table = 'from_assistant'
-
+ 
 class FromUser(models.Model):
     sender = models.TextField(blank=True, null=True)
     message = models.TextField(blank=True, null=True)
@@ -25,4 +24,3 @@ class FromUser(models.Model):
     
     class Meta:
         managed = False
-        db_table = 'from_user'

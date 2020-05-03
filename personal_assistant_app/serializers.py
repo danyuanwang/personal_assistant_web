@@ -15,4 +15,4 @@ class FromUserSerializer(serializers.HyperlinkedModelSerializer):
 class FromAssistantSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = FromAssistant
-        fields = ["recipient_id","text"]
+        fields = ["recipient_id", "text"]

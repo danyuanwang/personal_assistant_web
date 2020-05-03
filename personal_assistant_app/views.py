@@ -8,6 +8,10 @@ from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.decorators import action
+from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from datetime import date
 import random
 import math
@@ -47,3 +51,17 @@ class FromUserViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         return FromAssistantSerializer
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def from_user(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'POST':
+        from_user = request.data
+        if from_user is not None:            
+            from_assistant = post_message(from_user["sender"], from_user["message"])
+            # serializer.save()
+            return Response(json.dumps(from_assistant), status = status.HTTP_200_OK)
+        return Response("no data in request", status=status.HTTP_400_BAD_REQUEST)

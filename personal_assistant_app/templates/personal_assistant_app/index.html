@@ -6,8 +6,10 @@
 <div id=app>
 
     <p>[[ title ]]</p>
-
-    </div>
+    <p>From User: [[message]]</p>
+    <p>From Assistant: [[from_assistant_text]]</p>
+    <input v-model="message" placeholder="ask me" v-on:keyup.enter="from_user">
+</div>
 
 <script>
 
@@ -19,8 +21,31 @@
         el: '#app',
 
         data: {
-
+            from_assistant_text: 'Hello, I am Bob',
+            message: 'hello',
             title: 'Welcome to Personl Assistant',
+            sender: "ask-bob"
+        },
+        mounted: function () {
+            this.from_user();
+        },
+        methods: {
+            from_user: function () {
+                data = {sender:this.sender, message:this.message}
+                this.$http.post(
+                    `/api/from-user/`,
+                    data,
+                    {
+                        headers: { 'Accept': 'application/json' }
+                    }
+                )
+                    .then((response) => {
+                        this.from_assistant_text = response.data;
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            },
         }
 
     })
