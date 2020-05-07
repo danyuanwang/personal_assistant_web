@@ -82,6 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DBNAME', 'personal_assistant_db'),
         'HOST': os.environ.get('DBHOST', 'localhost'),
+        'PORT': os.environ.get('DBPORT', '5432'),
         'USER': os.environ.get('DBUSER', 'personal_assistant_db_admin'),
         'PASSWORD': os.environ.get('DBPASS', 'covidhub@io')
     }
