@@ -1,5 +1,5 @@
 export DBHOST="localhost"
-export DBPORT="5433"
+export DBPORT="5432"
 export DBUSER="personal_assistant_db_admin"
 export DBNAME="personal_assistant_db"
 export DBPASS="covidhub@io"

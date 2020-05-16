@@ -26,7 +26,9 @@ def parser_log_data(drop_table):
     cur.execute('''
     CREATE TABLE IF NOT EXISTS conversation_log (
         id SERIAL PRIMARY KEY,
+        conversation_id TEXT,
         from_user  TEXT,
+        to_user TEXT,
         timestamp timestamp default current_timestamp
         )
     ''')
