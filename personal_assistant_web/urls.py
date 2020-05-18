@@ -26,5 +26,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('', include("personal_assistant_app.urls")),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/from-user/', views.from_user, name="from_user")
+    path('api/from-user/', views.from_user, name="from_user"),
+    path('api/take_action/', views.take_action, name="take_action"),
+    path('api/generate_nl/', views.generate_nl, name="generate_nl"),
  ]
